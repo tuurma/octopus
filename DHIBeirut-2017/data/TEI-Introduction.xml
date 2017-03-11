@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <?teipublisher odd="documentation.odd"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
@@ -23,33 +22,10 @@
                     <head>Workshop outline</head>
                     
                     <list>
-                    <item>What 'digital' means for editions
-                        <list>
-                            <item>Sahle's definition</item>
-                            <item>Digital vs Vanilla Print</item>
-                            <item>modelling aspect</item>
-                            <item>markup</item>
-                            <item>community standard: TEI</item>
-                        </list>
-                    </item>
-                    <item>TEI Universe
-                        <list>
-                            <item>TEI Guidelines</item>
-                            <item>TEI Infrastructure</item>
-                            <item>TEI consortium</item>
-                            <item>TEI community</item>
-                        </list>
-                    </item>
-                    <item>XML foundations
-                        <list>
-                            <item>elements and attributes</item>
-                            <item>well-formedness</item>
-                            <item>validity</item>
-                            <item>namespacess</item>
-                            <item>vocabularies</item>
-                        </list>
-                    </item>
-                    <item>TEI Overview
+                    <item>Editing and markup</item>
+                    <item>TEI Universe</item>
+                    <item>XML foundations</item>
+                    <item>TEI Core
                         <list>
                             <item>TEI documents</item>
                             <item>teiHeader</item>
@@ -61,6 +37,8 @@
                             <item>and other funky stuff</item>
                         </list>
                     </item>
+                    <item>Querying TEI</item>
+                    <item>TEI Processing Model and TEI Publisher</item>
                     </list>
                 </div>
                 <div>
@@ -69,17 +47,16 @@
                     <quote>“What is text? I am not so naïve as to imagine that question could ever be
                     finally settled. Asking such a question is like asking ‘How long is the coast
                     of England?’.”</quote>
-                    <author>J. McGann</author>
-
+                    <p>J. McGann</p>
                     <quote>“Text is what you look at. And how you look at it.”</quote>
-                    <author>P. Sahle</author>
+                    <p>P. Sahle</p>
                     
                     <quote>“In getting my books, I have always been
                     solicitous of an ample margin; this is not so much through any love of the
                     thing in itself, however agreeable, as for the facility it affords me of
                     penciling in suggested thoughts, agreements, and differences of opinion,
                     or brief critical comments in general.”</quote>
-                    <author>Edgar Allan Poe</author>
+                    <p>Edgar Allan Poe</p>
                 </div>
                 <div>
                     <head>What an edition is?</head>
@@ -108,7 +85,8 @@
                         <graphic url="duBellay-1.png"/>
                     </figure>
                 </div>
-                <div>
+                <div xml:id="markup">
+                    <head>Markup</head>
                     <p>A text is more than a sequence of encoded glyphs or lexical tokens
                         <list>
                             <item>it has a structure and a communicative function</item>
@@ -118,13 +96,13 @@
                             <item>it can be enriched by annotation</item>
                         </list>
                     </p>
+                    
+                    <p>The process of inserting explicit markers for implicit textual features is often called ‘markup’, or equivalently ‘encoding’; the term ‘tagging’ is also used informally.</p>
 
-                    <p>Markup can make these things explicit.</p>
                     <p>
-                        <emph>Only that which is explicit can be reliably found
-                    and displayed, counted, analysed...</emph>
+                        <hi>Only that which is explicit can be reliably found
+                    and displayed, counted, analysed...</hi>
                     </p>
-                </div>
 
                 <div>
                 <head>Why would we bother with marking up all that?</head>
@@ -149,7 +127,7 @@
                 <head>Procedural markup</head>
                 <p>In the beginning there was procedural markup</p>
 
-                <code>RED INK ON; print balance; RED INK OFF</code>
+                   <code>RED INK ON; print balance; RED INK OFF</code>
                 
                 <p>
                         <hi>Problem</hi>: Conventions give some clues about the meaning but are often ambiguous and may not be universally understood.</p>
@@ -180,26 +158,25 @@ look like?</head>
                 <div>
                 <head>Compare two markup approaches</head>
                 <pre>
-<code lang="xml">
-&lt;pb n="4"/&gt;A MONSEI- &lt;lb/&gt;GNEUR LE REVE-
-&lt;lb/&gt;rendissime Cardinal &lt;lb/&gt;du Bellay. &lt;lb/&gt;S
-&lt;lb/&gt;
-&lt;c rend="lettrine"&gt;V&lt;/c&gt;EU le
-Personnaige, &lt;lb/&gt;que tu joues au Spec- &lt;lb/&gt;tacle de toute l'Europe...
-</code>
+    <code lang="xml">
+    &lt;pb n="4"/&gt;A MONSEI- &lt;lb/&gt;GNEUR LE REVE-
+    &lt;lb/&gt;rendissime Cardinal &lt;lb/&gt;du Bellay. &lt;lb/&gt;S
+    &lt;lb/&gt;
+    &lt;c rend="lettrine"&gt;V&lt;/c&gt;EU le
+    Personnaige, &lt;lb/&gt;que tu joues au Spec- &lt;lb/&gt;tacle de toute l'Europe...
+    </code>
 </pre>
 
 <pre>
-<code lang="xml">
-
-&lt;div type="dedicace"&gt;
-    &lt;head&gt;A MONSEIGNEUR LE REVERENDISSIME CARDINAL DU BELLAY&lt;/head&gt;
-    &lt;salute&gt;S&lt;ex&gt;ire&lt;/ex&gt;&lt;/salute&gt;
-    &lt;p&gt;
-    &lt;c rend="lettrine"&gt;V&lt;/c&gt;EU le Personnaige, que tu joues au Spectacle de toute
-    l'Europe... &lt;/p&gt;...
-&lt;/div&gt;
-</code>
+    <code lang="xml">
+    &lt;div type="dedicace"&gt;
+        &lt;head&gt;A MONSEIGNEUR LE REVERENDISSIME CARDINAL DU BELLAY&lt;/head&gt;
+        &lt;salute&gt;S&lt;ex&gt;ire&lt;/ex&gt;&lt;/salute&gt;
+        &lt;p&gt;
+        &lt;c rend="lettrine"&gt;V&lt;/c&gt;EU le Personnaige, que tu joues au Spectacle de toute
+        l'Europe... &lt;/p&gt;...
+    &lt;/div&gt;
+    </code>
 </pre>
     
 </div>
@@ -240,7 +217,10 @@ Personnaige, &lt;lb/&gt;que tu joues au Spec- &lt;lb/&gt;tacle de toute l'Europe
 
 
                 <div>
-                <head>What are our hopes and promises (when applying for funding)?</head>                
+                <head>What are our hopes and promises?</head>
+                <p>
+                        <hi>(not only when applying for funding)</hi>
+                    </p>                
                 
                 <list>
                     <item>scholarly use</item>
@@ -265,8 +245,760 @@ Personnaige, &lt;lb/&gt;que tu joues au Spec- &lt;lb/&gt;tacle de toute l'Europe
                     
                     <p>XML is a good fit (for the most part...)</p>
                 </div>
+                </div>
+                <div xml:id="tei">
+                    <head>Community standard: TEI</head>
+                    <p>The Text Encoding Initiative (TEI) is a consortium which collectively develops and maintains a standard for the representation of texts in digital form.</p>
+                    <p>TEI Guidelines: encoding methods for machine-readable texts, chiefly in the humanities, social sciences and linguistics.</p>
+                    <p>Widely used by libraries, museums, publishers, and individual scholars to present texts for online research, teaching, and preservation.</p>
+            
                 <div>
-                    <head>Community standard: TEI</head>                
+                <p>The TEI Consortium is a nonprofit membership organization composed of academic institutions, research projects, and individual scholars from around the world. Members contribute financially to the Consortium and elect representatives to its Council and Board of Directors. In commemoration of the TEI community's 30th anniversary, it will be awarded the 2017 Antonio Zampolli Prize from the Alliance of Digital Humanities Organizations.</p>
+                    <figure>
+                        <graphic url="tei-community.png"/>
+                    </figure>
+                </div>
+
+                <div>
+                    <head>Join the TEI, they said...</head>
+                    <p>TEI is often called a <hi>de facto standard</hi>,
+                    likely because it's a community of users, developing from the bottom up.</p>
+                    <figure>
+                        <graphic url="soldier.jpg"/>
+                    </figure>
+                        
+                    <p>If you have questions about anything broadly connected with TEI
+                    ask at TEI-L@listserv.brown.edu; you get answers not only from us,
+                    but TEI experts around the world. Don't be shy: 
+                    questions from those of all levels of ability stop the list 
+                    becoming too technical, everyone benefits from having the answers be public
+                    -- and you benefit by reading (and sometimes answering!) others' problems
+                    </p>
+                </div>
+                
+                <div xml:id="xml">
+                    <head>TEI encoding scheme is expressed in XML</head>
+                    
+                    <p>The rules and recommendations made in TEI Guidelines are expressed in terms of what is currently the most widely-used markup language for digital resources of all kinds: the Extensible Markup Language (XML), as defined by the World Wide Web Consortium's XML Recommendation. However, the TEI encoding scheme itself does not depend on this language; it was originally formulated in terms of SGML (the ISO Standard Generalized Markup Language), a predecessor of XML, and may in future years be re-expressed in other ways as the field of markup develops.</p> 
+
+                </div>
+                </div>
+                <div xml:id="xml">
+                    <head>XML</head>
+<p>Extensible Markup Language is a markup language that defines a set of rules for encoding documents in a format which is both human-readable and machine-readable.</p>
+
+<p>Defined by the W3C's XML 1.0 Specification and by several other related specifications, all of which are free open standards.</p>
+
+<p>Strictly speaking, XML is a metalanguage, that is, a language used to describe other languages (or, as we often say: vocabularies). TEI is one of the existing vocabularies expressed in XML.</p>
+                
+                <div>
+                <head>UNICODE</head>
+<p>XML document is a string of characters.</p>
+
+<p>Almost every legal Unicode character may appear in an XML document.</p>
+                </div>
+
+                <div>
+                
+                    <head>Markup and content</head>
+                    
+<p>The characters making up an XML document are divided into markup and content, which may be distinguished by the application of simple syntactic rules.</p>
+
+<list>
+<item>markup either begins with &lt; and ends with a &gt;</item>
+<item>or begins with the character &amp; and ends with a ;</item>
+<item>strings of characters that are not markup are content</item>
+</list>
+
+                </div>
+
+                <div>
+                    <head>Tag</head>
+                    <p>A markup construct that begins with &lt; and ends with &gt;.</p>
+<p>Tags come in three flavors: 
+                    <list>
+                    <item>start-tags; for example: &lt;div&gt;</item>
+                    <item>end-tags; for example: &lt;/div&gt;</item>
+                    <item>empty-element tags; for example: &lt;lb/&gt;</item>
+                    </list>
+                    </p>
+                </div>
+                
+                				<div>
+                    <head>Element </head>
+					<p>A logical document component which either begins with a start-tag and ends
+						with a matching end-tag or consists only of an empty-element tag.</p>
+					<p>The characters between the start- and end-tags, if any, are the element's
+						content, and may contain markup, including other elements, which are called
+							<hi>child elements</hi>. An example of an element is <lb/>
+					   <pre>
+                            <code lang="xml">&lt;salute&gt;Hello, world.&lt;/salute&gt;</code>
+                        </pre>. <lb/>Another is <pre>
+                            <code lang="xml">&lt;lb/&gt;</code>
+                        </pre>. </p>
+				</div>
+				<div>
+					<head>Attribute</head>
+					<p>A markup construct consisting of a name/value pair that exists within a
+						start-tag or empty-element tag. In the example the element <code>img</code>
+						has two attributes, <code>src</code> and <code>alt</code>: <lb/>
+					   <pre>
+                            <code lang="xml">&lt;img src="madonna.jpg" alt='Foligno Madonna, by Raphael'/&gt;</code>
+                        </pre>
+						<lb/> Another example would be <lb/>
+					   <pre>
+                            <code lang="xml">&lt;step number="3"&gt;Connect A to B.&lt;/step&gt;</code>
+                        </pre>
+                        <lb/> where the
+						name of the attribute is <code>number</code> and the value is
+						<code>3</code>. </p>
+				</div>
+				<div>
+					<head>Attributes</head>
+					<p>An XML attribute can only have a single value and each attribute can appear
+						at most once on each element.</p>
+					<p>Where a list of multiple values is desired, this
+						must be done by encoding the list into a well-formed XML attribute with some
+						format beyond what XML defines itself. Usually this is either a
+							<hi>comma or semi-colon delimited list</hi> or, if the
+						individual values are known not to contain spaces, a <hi>space-delimited
+							list</hi> can be used.</p>
+					<p>
+						<code>&lt;div class="inner greeting-box"&gt;Hello!&lt;/div&gt;</code>
+					</p>
+                    <p>where the attribute <code>class</code> has
+						both the value <code>inner greeting-box</code> and also indicates the two
+						CSS class names <code>inner</code> and
+					<code>greeting-box</code>.</p>
+                </div>
+				<div>
+                    <head>XML declaration</head>
+				   <p>XML documents may begin by declaring some information about
+				      themselves, as in the following example: </p>
+				   <pre>
+                        <code lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</code>
+                    </pre>
+				</div>
+				<div>
+                    <head>Well-formedness</head>
+					<p>XML document must be a well-formed text – it needs to satisfy a list of
+						syntax rules provided in the specification. </p>
+					
+						<list>
+							<item>The document contains only properly encoded legal
+									<hi>Unicode</hi> characters </item>
+							<item>None of the special syntax characters such as <hi>&lt; and
+									&amp;</hi> appear except when performing their
+								markup-delineation roles </item>
+							<item>The begin, end, and empty-element tags that delimit the elements are
+									<hi>correctly nested</hi>, with none missing and none
+								overlapping </item>
+							<item>The element tags are <hi>case-sensitive</hi>; the beginning
+								and end tags must match exactly. </item>
+							<item>A single <hi>root</hi> element contains all the other
+								elements. </item>
+							<item>Tag names cannot contain any of the characters
+								!"#$%&amp;'()*+,/;&lt;=&gt;?@[\]^`{|}~, nor a space character, and
+								cannot start with -, ., or a numeric digit. </item>
+						</list>
+				</div>
+				<div>
+					<head>DOM</head>
+                    <p> The W3C Document Object Model (DOM) is a platform and
+						language-neutral interface that allows programs and scripts to dynamically
+						access and update the content, structure, and style of a document. The XML
+						DOM defines the objects and properties of all XML elements, and the methods
+						(interface) to access them. </p>
+                </div>
+				<div>
+					<head>The DOM says: </head>
+					<list>
+						<item>The entire document is a document node</item>
+						<item>Every XML element is an element node </item>
+						<item>The text in the XML elements are text nodes </item>
+						<item>Every attribute is an attribute node </item>
+						<item>Comments are comment nodes </item>
+						<item>Text is Always Stored in Text Nodes</item>
+					</list>
+				   <figure>
+				      <graphic url="XML_node.gif"/>
+				   </figure>
+				   
+					<p>A common error is to expect an element node to contain text. However, the
+						text of an element node is stored in a text node. In this example:
+						<code>&lt;year&gt;2005&lt;/year&gt;</code>, the element node <code>&lt;year&gt;&lt;/year&gt;</code>, holds a text
+						node with the value "2005". "2005" is not the value of the
+						<code>&lt;year&gt;&lt;/year&gt;</code> element! </p>
+				</div>
+				<div>
+					<head>Node Parents, Children, and Siblings</head>
+					<p> The nodes in the node tree have a hierarchical relationship to each other.
+						The terms parent, child, and sibling are used to describe the relationships. </p>
+                    <list>
+						<item> Parent nodes have children. </item>
+						<item>Children on the same level are called siblings </item>
+						<item>In a node tree, the top node is called the root </item>
+						<item>Every node, except the root, has exactly one parent node </item>
+						<item>A node can have any number of children </item>
+						<item>A leaf is a node with no children </item>
+						<item>Siblings are nodes with the same parent </item>
+					</list>
+				</div>
+				<div>
+					<head>Node Types</head>
+					<p>Different W3C World Wide Web Consortium node types and descriptions:</p>
+					<small>
+						<list>
+							<item>Document represents the entire document (the root-node of the DOM
+								tree)</item>
+							<item>DocumentFragment represents a "lightweight" Document object, which
+								can hold a portion of a document</item>
+							<item>DocumentType provides an interface to the entities defined for the
+								document</item>
+							<item>ProcessingInstruction represents a processing instruction</item>
+							<item>EntityReference represents an entity reference</item>
+							<item>Element represents an element</item>
+							<item>Attr represents an attribute</item>
+							<item>Text represents textual content in an element or attribute</item>
+							<item>CDATASection represents a CDATA section in a document (text that
+								will NOT be parsed by a parser)</item>
+							<item>Comment represents a comment</item>
+							<item>Entity represents an entity</item>
+							<item>Notation represents a notation declared in the DTD</item>
+						</list>
+                    </small>
+				</div>
+				<div>
+                    <head>Namespaces</head>
+					<list>
+						<item>Namespace name is an identifier given to an XML vocabulary</item>
+						<item> It looks a lot like URI, eg. TEI namespace name is
+								<hi>http://www.tei-c.org/ns/1.0</hi>
+                        </item>
+						<item> It doesn't mean that this URI actually <hi>points</hi> to
+							something (like a schema), <hi>this is just a name!</hi>
+						</item>
+					</list>
+					<quote>XML namespaces are used for providing uniquely named elements and
+						attributes in an XML document. An XML instance may contain element or
+						attribute names from more than one XML vocabulary. If each vocabulary is
+						given a namespace, the ambiguity between identically named elements or
+						attributes can be resolved. </quote>
+				</div>
+				<div>
+					<head>Mental shortcut to namespaces</head>
+					<p>If you assume that each XML vocabulary is basically a
+							<hi>language</hi>, then namespace is a <hi>name of this
+							language</hi>.</p>
+					<p>So saying that a particular element comes from a given namespace
+							resolves the ambiguity, just like with natural languages, eg.
+						<lb/>polish:fart means "luck" and
+							is not smelly at all, contrary to english:fart <lb/>
+						spanish:hola meaning "hi!" is not the same
+							as polish:hola meaning "hey,
+							man, now wait a minute!"</p>
+					<p>
+                        <hi>Back to XML html:div is not quite the same as tei:div, but they could
+					   be used in the same document</hi>
+                    </p>
+				</div>
+				<div>
+					<head>How to declare a namespace for a document?</head>
+					<p>use xmlns attribute on root element, eg: </p>
+					   <pre>
+                        <code lang="xml">&lt;TEI	xmlns="http://www.tei-c.org/ns/1.0"&gt;</code>
+                    </pre>
+					<p>All descendants inherit the namespace from their parent, so no need to
+							repeat it on all other elements</p>
+				</div>
+				<div>
+					<head>How to mix elements from different namespaces?</head>
+					<p>use xmlns attribute on elements from 'embedded' namespaces, eg: <lb/>
+						<code>&lt;include xmlns="http://www.w3.org/2001/XInclude" href="elementsummary.xml"/&gt;</code> </p>
+					<p>declare namespace up top, give it a prefix and use prefixed element names,
+						eg: <lb/> 
+					   <code>&lt;TEI xmlns="http://www.tei-c.org/ns/1.0"	xmlns:skos="http://www.w3.org/2004/02/skos/core#" xml:lang="en"&gt;</code> <lb/> ....
+						somewhere down in the document .... <lb/>
+						<code>&lt;skos:symbol&gt;blah&lt;/skos:symbol&gt;</code> </p>
+					<p>If you don't put xmlns attribute anywhere, all elements belong to the
+								<hi>default, empty namespace!</hi>
+                    </p>
+				</div>
+				<div>
+					<pre>
+                        <code lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+	&lt;tei:bibl xmlns:tei="http://www.tei-c.org/ns/1.0"&gt;
+		&lt;title&gt;eXist&lt;/title&gt;
+		&lt;x:author xmlns:x="http://www.tei-c.org/ns/1.0"&gt;Adam Retter&lt;/x:author&gt;
+		&lt;author&gt;Erik Siegel&lt;/author&gt;
+		&lt;publisher&gt;O'Reilly&lt;/publisher&gt;
+		&lt;date&gt;2014&lt;/date&gt;
+		&lt;idno type="ISBN"&gt;9781449337100&lt;/idno&gt;
+	&lt;/tei:bibl&gt;
+	</code>
+                    </pre>
+					<p>All elements above are in the TEI namespace</p>
+                    <p> Different prefixes do not
+						matter! tei:author and x:author are the same</p>
+				</div>
+            </div>
+                <div xml:id="core">
+                <head>TEI document structure</head>
+                      <div>
+          <head>Structure of a TEI Document</head>
+          <p>There are two basic structures of a TEI Document:<list>
+              <item><gi>TEI</gi> (TEI document) contains a single TEI-conformant document,
+                comprising a TEI header and a text, either in isolation or as part of a teiCorpus
+                element.</item>
+              <item><gi>teiCorpus</gi> contains the whole of a TEI encoded corpus, comprising a
+                single corpus header and one or more TEI elements, each containing a single text
+                header and a text.</item>
+            </list></p>
+        </div>
+        
+        <div>
+          <head>TEI basic structures (1)</head>
+          <p>
+            <pre><code lang="xml">
+            &lt;teiCorpus>
+              &lt;teiHeader>&lt;!-- required -->&lt;/teiHeader>
+              &lt;TEI>&lt;!-- required -->&lt;/TEI>
+              &lt;!-- More &lt;TEI> elements -->
+            &lt;/teiCorpus>
+          </code></pre>
+          </p>
+        </div>
+        <div>
+          <head>TEI basic structures (2)</head>
+            <pre><code lang="xml">
+            &lt;TEI>
+              &lt;teiHeader>&lt;!-- required -->&lt;/teiHeader>
+              &lt;facsimile>&lt;!-- optional-->&lt;/facsimile>
+              &lt;sourceDoc>&lt;!-- optional -->&lt;/sourceDoc>
+              &lt;text>&lt;!-- required if no facsimile or sourceDoc-->&lt;/text>
+            &lt;/TEI>
+        </code></pre>
+        </div>
+        <div>
+          <head>text</head>
+          <p> What is a text?<list>
+              <item rend="pause"> A text may be unitary or composite <list>
+                  <item>unitary: forming an organic whole</item>
+                  <item>composite: consisting of several components which are in some important
+                    sense independent of each other</item>
+                </list></item>
+              <item rend="pause"> a unitary text contains <list>
+                  <item>optional front matter</item>
+                  <item><hi>body</hi> (required)</item>
+                  <item>optional back matter</item>
+                </list>
+              </item>
+              <!-- etc. -->
+            </list>
+          </p>
+        </div>
+        <div>
+          <head>Composite texts</head>
+          <p> A composite text contains <list>
+              <item>optional front matter</item>
+              <item><gi>group</gi> with <gi>text</gi> inside (required)</item>
+              <item>optional back matter</item>
+            </list>
+          </p>
+          <p>A corpus is a collection of text and header pairs that also has its own header.</p>
+          <p><gi>group</gi> tags may self-nest.</p>
+        </div>
+        <div>
+          <head>TEI text structure (1)</head>
+          <p>
+            <pre><code lang="xml">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            &lt;text>
+              &lt;front>&lt;!-- optional -->&lt;/front>
+              &lt;body>&lt;!-- required -->&lt;/body>
+              &lt;back>&lt;!-- optional -->&lt;/back>
+            &lt;/text>
+          </egXML>
+          </code></pre>
+          </p>
+        </div>
+        <div>
+          <head>TEI text structure (2)</head>
+          <p>
+            <pre><code lang="xml">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+	    &lt;text>
+	      &lt;front>&lt;!-- front matter to an anthology -->&lt;/front>
+	      &lt;group>
+		&lt;text>
+		  &lt;body>
+		    &lt;p> &lt;!-- content of first text -->&lt;/p>
+		  &lt;/body>
+		&lt;/text>
+	        &lt;!-- more texts here -->
+	      &lt;/group>
+	      &lt;back>&lt;!-- back matter to an anthology -->&lt;/back>
+	    &lt;/text>
+	  </egXML>
+	  </code></pre>
+          </p>
+        </div>
+        <div>
+          <head>Another Grouped Text Example</head>
+          <pre><code lang="xml">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                &lt;group>
+                  &lt;text>
+                    &lt;!-- optional front matter -->
+                    &lt;body>&lt;!-- First Body --> &lt;/body>
+                    &lt;!-- optional back matter -->
+                  &lt;/text>
+                  &lt;text>
+                    &lt;!-- optional front matter -->
+                    &lt;body> <!-- Second Body-->&lt;/body>
+                    &lt;!-- optional back matter -->
+                  &lt;/text>
+                &lt;/group>
+            </egXML>
+          </code></pre>
+        </div>
+      </div>
+      
+        <div>
+        <head>'Core' elements</head>
+        <p>The so-called 'Core' module groups together elements which may appear in any kind of text
+          and the tags used to mark them in all TEI documents. This includes: <list>
+            <item> paragraphs </item>
+            <item> highlighting, emphasis and quotation </item>
+            <item> simple editorial changes </item>
+            <item> basic names numbers, dates, addresses </item>
+            <item> simple links and cross-references </item>
+            <item>lists, notes, annotation, indexing </item>
+            <item>graphics </item>
+            <item>reference systems, bibliographic citations </item>
+            <item> simple verse and drama</item>
+          </list>
+        </p>
+        <!-- Notice nested div -->
+        <div>
+          <head>Paragraphs</head>
+          <p>
+            <gi>p</gi> (paragraph) marks paragraphs in prose <list>
+              <item>Fundamental unit for prose texts</item>
+              <item><gi>p</gi> can contain all the phrase-level elements in the core</item>
+              <item><gi>p</gi> can appear directly inside <gi>body</gi> or inside <gi>div</gi>
+                (divisions)</item>
+            </list>
+            <pre><code lang="xml">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+&lt;p>Thanks for yours of this morning. I hope &lt;lb/>you have had my card posted last Monday. &lt;lb/>On Mond. next I lecture the &lt;orgName ref="#Fieldclub">Field Club&lt;/orgName> - &lt;lb/>a Nat. Hist. Association, in the lines of our &lt;lb/>old Society - Geological, (you + me) + Botanical &lt;lb/>(New) Do you remember: you&lt;supplied>r&lt;/supplied> old &lt;lb/>Black Molt?&lt;/p>
+</egXML>
+        </code></pre>
+          </p>
+        </div>
+        <div>
+          <head>Highlighting</head>
+          <p>By <emph>highlighting</emph> we mean the use of any combination of typographic features
+            (font, size, hue, etc.) in a printed or written text in order to distinguish some
+            passage of a text from its surroundings. For words and phrases which are: <list>
+              <item>distinct in some way (e.g. foreign, archaic, technical)</item>
+              <item>emphatic or stressed when spoken</item>
+              <item>not really part of the text (e.g. cross references, titles, headings)</item>
+              <item>a distinct narrative stream (e.g. an internal monologue, commentary)</item>
+              <item>attributed to some other agency inside or outside the text (e.g. direct speech,
+                quotation)</item>
+              <item>set apart in another way (e.g. proverbial phrases, words mentioned but not
+                used)</item>
+            </list>
+          </p>
+        </div>
+        <div>
+          <head>Highlighting Examples</head>
+          <list>
+            <item>
+              <gi>hi</gi> (general purpose highlighting);<gi>distinct</gi> (linguistically distinct)
+              <pre><code lang="xml">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+    &lt;p>Last week I wrote (to order) a strong 
+    &lt;lb/>bit of Blank: on &lt;hi rend="ul">Antaeus v. Heracles&lt;/hi>.
+    &lt;lb/>These are the best lines, methinks: 
+    &lt;lb/>(N.B. Antaeus deriving strength from his Mother Earth 
+    &lt;lb/>nearly licked old &lt;distinct>Herk&lt;/distinct>.) &lt;/p>
+</egXML>
+            </code></pre>
+            </item>
+            <item>Other similar elements include: <gi>emph</gi>, <gi>mentioned</gi>,
+                <gi>soCalled</gi>, <gi>term</gi> and <gi>gloss</gi></item>
+          </list>
+        </div>
+        <div>
+          <head>Quotation</head>
+          <p>Quotation marks can be used to set off text for many reasons, so the TEI has the
+            following elements: <list>
+              <item><gi>q</gi> (separated from the surrounding text with quotation marks)</item>
+              <item><gi>said</gi> (speech or thought)</item>
+              <item><gi>quote</gi> (passage attributed to an external source)</item>
+              <item><gi>cit</gi> (groups a quotation and citation)</item>
+            </list>
+            <pre><code lang="xml">
+<egXML xmlns="http://www.tei-c.org/ns/Examples" rend="tiny">
+&lt;cit>
+    &lt;quote>
+        &lt;l>... How Earth herself empowered him with her trick,&lt;/l>
+        &lt;l>Gave him the grip and stringency of Winter,&lt;/l>
+        &lt;l>And all the ardour of th' invincible Spring;&lt;/l>
+    &lt;/quote>
+    &lt;bibl>
+        &lt;author>Wilfred Owen&lt;/author> 
+        &lt;title ref="works.xml#WO123">Letter to Leslie Gunston / The Wrestler&lt;/title>
+        &lt;date when="1917-07">July 1917&lt;/date>
+    &lt;/bibl>
+&lt;/cit>
+</egXML>
+        </code></pre>
+          </p>
+        </div>
+        <!-- Choice -->
+        <div>
+          <head>Simple Editorial Changes: <gi>choice</gi> and Friends</head>
+          <p>
+            <list>
+              <item><gi>choice</gi> (groups alternative editorial encodings)</item>
+              <item>Errors: <list>
+                  <item><gi>sic</gi> (apparent error)</item>
+                  <item><gi>corr</gi> (corrected error)</item>
+                </list></item>
+              <item>Regularization: <list>
+                  <item><gi>orig</gi> (original form)</item>
+                  <item><gi>reg</gi> (regularized form)</item>
+                </list></item>
+              <item>Abbreviation: <list>
+                  <item><gi>abbr</gi> (abbreviated form)</item>
+                  <item><gi>expan</gi> (expanded form)</item>
+                </list></item>
+            </list>
+          </p>
+        </div>
+        <div>
+          <head>Choice Example</head>
+          <p>
+          <pre><code lang="xml">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              &lt;p>...any might, &lt;unclear reason="scribbled">majesty&lt;/unclear>, 
+                &lt;choice>
+                &lt;abbr>domin&lt;/abbr>
+                &lt;expan>domin&lt;ex>ion&lt;/ex>&lt;/expan>
+              &lt;/choice> or power...&lt;/p>
+            </egXML>
+            </code></pre>
+          </p>
+        </div>
+        <div>
+          <head>Additions, Deletions, and Omissions</head>
+          <p>
+            <list>
+              <item><gi>add</gi> (addition to the text, e.g. marginal gloss)</item>
+              <item><gi>del</gi> (phrase marked as deleted in the text)</item>
+              <item><gi>gap</gi> (indicates point where material is omitted)</item>
+              <item><gi>unclear</gi> (contains text unable to be transcribed clearly)</item>
+            </list>
+          </p>
+        </div>
+        <div>
+          <head>Example of <gi>add</gi>, <gi>del</gi>, <gi>gap</gi>, and <gi>unclear</gi></head>
+          <p>
+          <pre><code lang="xml">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              &lt;p>
+                &lt;add place="left">My &lt;/add>
+                &lt;del rend="stroked">It's &lt;/del>
+                &lt;add place="above">
+                  &lt;del rend="stroked">The &lt;/del>
+                &lt;/add> subject &lt;del rend="stroked">of&lt;/del> is War, 
+                and the &lt;unclear>pity &lt;/unclear>of &lt;del rend="stroked">it&lt;/del> War. 
+                &lt;lb/> The Poetry is in the pity. &lt;/p>
+    </egXML>
+    </code></pre>
+          </p>
+        </div>
+        <div>
+          <head>Basic Names </head>
+          <p>
+            <list>
+              <item><gi>name</gi> (a name in the text, contains a proper noun or noun phrase)</item>
+              <item><gi>rs</gi> (a general-purpose name or referencing string )</item>
+            </list>
+          </p>
+          <p>The <att>type</att> attribute is useful for categorizing these, and they both also have
+              <att>key</att>, <att>ref</att>, and <att>nymRef</att> attributes.</p>
+        </div>
+        <div>
+          <head>Basic Numbers and Measures</head>
+          <p>
+            <list>
+              <item><gi>num</gi> (marks a number of any sort)</item>
+              <item><gi>measure</gi> (marks a quantity or commodity)</item>
+              <item><gi>measureGrp</gi> (groups specifications relating to a single object)</item>
+              <item>While <gi>num</gi> has simple <att>type</att> and <att>value</att> attributes,
+                  <gi>measure</gi> has <att>type</att>, <att>quantity</att>, <att>unit</att> and
+                  <att>commodity</att> attributes</item>
+            </list>
+          </p>
+        </div>
+        <div>
+          <head>Number and Measure examples</head>
+          
+          <pre><code>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">&lt;l>With a &lt;num value="1000">thousand&lt;/num> pains that vision's face was grained;&lt;/l></egXML>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">... only &lt;measure type="distance" unit="m" quantity="3218.69">two miles&lt;/measure> from the front....</egXML>
+</code></pre>
+        </div>
+        <div>
+          <head>Dates</head>
+          <p>
+            <list>
+              <item><gi>date</gi> (contains a date in any format and includes a <att>when</att>
+                attribute for a regularised form and a <att>calendar</att> attribute to specify what
+                calendar system)</item>
+              <item><gi>time</gi> (contains a time in any format and includes a <att>when</att>
+                attribute for a regularised form)</item>
+            </list>
+          </p>
+          <pre><code lang="xml">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            &lt;date when="1917-07">July 1917.&lt;lb/> Wednesday&lt;/date>
+</egXML>
+        </code></pre>
+        </div>
+        <div>
+          <head>Simple Linking</head>
+          <p>
+            <list>
+              <item><gi>ptr</gi> (defines a pointer to another location)</item>
+              <item><gi>ref</gi> (defines a reference to another location, with optional linking
+                text)</item>
+              <item>Both elements have: <list>
+                  <item><att>target</att> attribute taking a URI reference</item>
+                  <item><att>cRef</att> attribute for canonical referencing schemes</item>
+                </list>
+              </item>
+              <item>If the linking text is able to be generated, <gi>ptr</gi> and <gi>ref</gi> might
+                be used in the same place.</item>
+            </list>
+          </p>
+        </div>
+        <div>
+          <head>Simple Linking Example</head>
+          <pre><code lang="xml">
+          
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> 
+See &lt;ref target="#Section12">section 12 on page 34&lt;/ref>. 
+</egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> 
+See &lt;ptr target="#Section12"/>. 
+</egXML>
+        </code></pre>
+        </div>
+          
+          
+        <div>
+          <head>Lists</head>
+            <list>
+              <item><gi>list</gi> (a sequence of items forming a list)</item>
+              <item><gi>item</gi> (one component of a list)</item>
+              <item><gi>label</gi> (label associated with an item)</item>
+              <item><gi>headLabel</gi> (heading for column of labels)</item>
+              <item><gi>headItem</gi> (heading for column of items)</item>
+            </list>
+        </div>
+        <div>
+          <head>Simple List Example</head>
+          <p> The previous slide contained only:</p>
+          <pre><code lang="xml">
+  <egXML xmlns="http://www.tei-c.org/ns/Examples" rend="tiny">
+&lt;div>
+&lt;head>Lists&lt;/head>
+ &lt;list>
+  &lt;item><gi>list</gi> (a sequence of items forming a list)&lt;/item>
+  &lt;item><gi>item</gi> (one component of a list)&lt;/item>
+  &lt;item><gi>label</gi> (label associated with an item)&lt;/item>
+  &lt;item><gi>headLabel</gi> (heading for column of labels)&lt;/item>
+  &lt;item><gi>headItem</gi> (heading for column of items)&lt;/item>
+ &lt;/list>
+ 
+&lt;/div>
+            </egXML>
+</code></pre>
+        </div>
+        <div>
+          <head>Notes</head>
+          <p>
+            <list>
+              <item><gi>note</gi> (contains a note or annotation)</item>
+              <item>Notes can be those existing in the text, or provided by the editor of the
+                electronic text</item>
+              <item>A <att>place</att> attribute can be used to indicate the physical location of
+                the note</item>
+              <item>Notes should usually be encoded where its identifier/mark first
+                appears; notes can also be kept separately and point back to their location with a
+                  <att>target</att> attribute</item>
+            </list>
+          <pre><code lang="xml">
+      <egXML xmlns="http://www.tei-c.org/ns/Examples">&lt;note>Painted by &lt;persName>John Singer Sargent&lt;/persName>, 1918&lt;/note></egXML>
+      </code></pre>
+          </p>
+        </div>
+        <div>
+          <head>Graphics</head>
+          <p>
+            <list>
+              <item><gi>graphic</gi> (indicates the location of an inline graphic, illustration, or
+                figure)</item>
+              <item><gi>binaryObject</gi> (encoded binary data embedding a graphic or other
+                object)</item>
+              <item>The <title>figure</title> module provides <gi>figure</gi> and <gi>figDesc</gi>
+                for more complex graphics with <gi>figDesc</gi></item>
+            </list>
+          <pre><code lang="xml">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+  &lt;figure>
+    &lt;graphic url="materials/postcard-front.jpg"/>
+    &lt;figDesc>A postcard image of two men relaxing at a table, smoking pipes and drinking. A dog and potted fruit tree are nearby with a house over the wall in the distance.&lt;/figDesc>
+  &lt;/figure>
+</egXML>
+</code></pre>
+          </p>
+        </div>
+        <div>
+          <head>Simple Verse</head>
+          <pre><code lang="xml">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+    &lt;lg type="stanza">
+      &lt;l>It seemed that out of battle I escaped&lt;/l>
+      &lt;l>Down some profound dull tunnel, long since scooped&lt;/l>
+      &lt;l>Through granites which titanic wars had groined.&lt;/l>
+    &lt;/lg>
+  </egXML>
+  </code></pre>
+        </div>
+        <div>
+          <head>Simple Drama</head>
+          <pre><code lang="xml">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+          &lt;sp>
+            &lt;speaker>The reverend Doctor Opimiam&lt;/speaker>
+            &lt;p>I do not think I have named a single unpresentable fish.&lt;/p>
+          &lt;/sp>
+          &lt;sp>
+            &lt;speaker>Mr Gryll&lt;/speaker>
+            &lt;p>Bream, Doctor: there is not much to be said for bream.&lt;/p>
+          &lt;/sp>
+        </egXML>
+        </code></pre>
+        </div>
+      
+        
+                
                 </div>
                 <div>
                     <head>The ambivalence continues</head>
@@ -284,9 +1016,8 @@ schema and its surrounding processing rules. And even
 the two that don’t may benefit from staying within that
 standard schema as far as possible. ’ - M. Mueller</quote>
                 </div>
-                    
                 <div>
-                    <head>Text Encoding Initiative</head>
+                    <head>TEI Processing Model</head>
                     
                     <p>The TEI Processing Model (PM) extends the TEI ODD specification format with a processing model for
                     documents. That way intended processing for all elements can be expressed within the TEI vocubulary itself.
@@ -342,7 +1073,7 @@ standard schema as far as possible. ’ - M. Mueller</quote>
                     pagination, navigation and search features.</p>
                 </div>
                 <div xml:id="quickstart">
-                    <head>Getting Started</head>
+                    <head>TEI Publisher</head>
                     <p>TEI Publisher is distributed as two eXist application packages, making it easy to install
                     on any local or remote eXist database instance. Just go to the dashboard, open the package
                     manager and install the TEI Publisher application package from the public repository. The 

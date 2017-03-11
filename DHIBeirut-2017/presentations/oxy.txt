@@ -1,0 +1,21 @@
+------START-LICENSE-KEY------
+
+Registration_Name=Workshop
+
+Company=Digital Humanities Institute Beirut
+
+Category=Academic-Classroom
+
+Component=XML-Editor, XSLT-Debugger, Saxon-SA
+
+Version=18
+
+Number_of_Licenses=1
+
+Date=03-08-2017
+
+Trial=91
+
+SGN=MC0CFQCJpHPcg7fhWO+zk42D2HG3VTpCjQIUJArXTdfUSLkzJucqe9IiVFC9laI\=
+
+-------END-LICENSE-KEY-------
